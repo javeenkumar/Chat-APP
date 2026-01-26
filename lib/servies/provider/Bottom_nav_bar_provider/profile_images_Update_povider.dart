@@ -4,6 +4,7 @@ import 'package:chatapp/CustomWidgets/Utilities/ToastMessage.dart';
 import 'package:chatapp/servies/session_controller.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:cloudinary_public/cloudinary_public.dart';
@@ -20,7 +21,7 @@ class ProfileImagesUpdatePovider with ChangeNotifier {
 
   final ImagePicker _picker = ImagePicker();
   final CloudinaryPublic _cloudinary = CloudinaryPublic(
-    'duxfaiu8k',
+    dotenv.env['CLOUDANARY_KEY']!,
     'flutter_unsigned',
     cache: false,
   );
@@ -35,7 +36,6 @@ class ProfileImagesUpdatePovider with ChangeNotifier {
     notifyListeners();
   }
 
-  /// Pick image from gallery
   Future<void> pickImageGallery() async {
     final pickedFile = await _picker.pickImage(
       source: ImageSource.gallery,

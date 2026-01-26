@@ -33,6 +33,7 @@ class _FriendScreenState extends State<FriendScreen> {
           itemBuilder: (context, snapshot, animation, index) {
             if (SessionController.userId ==
                 snapshot.child('uid').value.toString()) {
+
               return Container();
             } else {
               return Card(
@@ -47,6 +48,7 @@ class _FriendScreenState extends State<FriendScreen> {
                           username: snapshot.child('username').value.toString(),
                           email: snapshot.child('email').value.toString(),
                           img: snapshot.child('profile').value.toString(),
+                          deviceToken: snapshot.child('token').value?.toString() ?? "",
                         ),
                       ),
                     );

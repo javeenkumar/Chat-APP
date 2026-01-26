@@ -4,7 +4,6 @@ import 'package:chatapp/screen/forget_password_screen.dart';
 import 'package:chatapp/screen/signup_screen.dart';
 import 'package:chatapp/servies/provider/Login_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
 import '../servies/provider/button_provider.dart';
@@ -125,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           textColor: Colors.white,
                           fontSize: 18,
                           width: width * .75,
-                         isloading: provider.loading,
+                         isloading: provider.isloading,
                          onPressed: (){
                             if(_key.currentState!.validate()){
                               provider.FirebaseLogin(context, email.text, password.text);
@@ -156,26 +155,22 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                       SizedBox(height: 30),
-                      ElButton(
+                    Consumer<LoginProvider>(builder: (context,provider,child){
+                      return ElButton(
                         context,
                         Colors.white,
-                        fweight: FontWeight.bold,
+                        fweight: FontWeight.w500,
                         text: 'Sign with Google',
                         textColor: Colors.black,
-                        fontSize: 18,
+                        fontSize: 16,
                         width: width * .6,
                         borderColor: Colors.black,
                         borderWidth: 1,
-                        onPressed: () async{
-                          // try{
-                          //   GoogleSignIn signIn = GoogleSignIn.instance;
-                          //   await signIn.initialize(serverClientId: )
-                          // }catch(e){
-                          //
-                          // }
+                        onPressed: (){
+                          provider.DirectGoogleSign(context);
                         }
-
-                      ),
+                      );
+                    }),
                     ],
                   ),
                 ),

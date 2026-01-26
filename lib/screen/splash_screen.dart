@@ -3,6 +3,8 @@ import 'package:chatapp/servies/splash_services.dart';
 import 'package:flutter/material.dart';
 import 'package:gif/gif.dart';
 
+import '../servies/Notification/Notification_service.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -22,6 +24,13 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     splashServices.isloding(context);
     controller = GifController(vsync: this);
+
+
+    NotificationService notificationService = NotificationService();
+    NotificationService.initialize();
+    notificationService.requestNotificationPermission();
+    notificationService.firebaseInit();
+
   }
 
   @override

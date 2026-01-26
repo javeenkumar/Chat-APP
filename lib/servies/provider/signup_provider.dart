@@ -39,6 +39,7 @@ class SignupProvider with ChangeNotifier{
         'onlineStatus':'noOne',
         'phone':'',
         'profile':'',
+        'token':SessionController.token
 
       }).then((value){
 
