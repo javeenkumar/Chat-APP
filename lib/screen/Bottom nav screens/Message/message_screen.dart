@@ -14,7 +14,6 @@ class MessageScreen extends StatefulWidget {
   final String email;
   final String img;
   final String deviceToken;
-  final String nameTittle;
 
   MessageScreen({
     super.key,
@@ -23,7 +22,7 @@ class MessageScreen extends StatefulWidget {
     required this.email,
     required this.img,
     required this.deviceToken,
-  }) : nameTittle = SessionController.name ?? "";
+  });
 
   @override
   State<MessageScreen> createState() => _MessageScreenState();
@@ -39,6 +38,7 @@ class _MessageScreenState extends State<MessageScreen> {
   void initState() {
     super.initState();
     markMessagesSeen();
+    UserService.loadUserName();
   }
 
   void markMessagesSeen() async {
@@ -140,7 +140,7 @@ class _MessageScreenState extends State<MessageScreen> {
             margin: const EdgeInsets.only(bottom: 10, left: 8, right: 8, top: 4),
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
             decoration: BoxDecoration(
-              color: Colors.grey.shade50,
+              color: Colors.grey.shade300,
               borderRadius: BorderRadius.circular(30),
               boxShadow: const [
                 BoxShadow(
@@ -201,15 +201,13 @@ class _MessageScreenState extends State<MessageScreen> {
       'type': 'text',
     }).then((value) {
 
-      UserService.loadUserName();
-
       sendNotificationFromFlutter(
           deviceToken: widget.deviceToken.toString(),
-          title: widget.nameTittle,
+          title: SessionController.name.toString(),
           body: message.text,
           data: {
             'screen':'message_screen',
-            'title': widget.nameTittle,
+            'title': SessionController.name.toString(),
             'sms': message.text
           }
       );

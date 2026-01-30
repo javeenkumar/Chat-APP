@@ -1,3 +1,4 @@
+import 'package:chatapp/CustomWidgets/logo.dart';
 import 'package:chatapp/screen/splash_screen.dart';
 import 'package:chatapp/servies/provider/Bottom_nav_bar_provider/profile_images_Update_povider.dart';
 import 'package:chatapp/servies/provider/Login_provider.dart';
@@ -76,9 +77,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ChatProvider()),
       ],
       child: MaterialApp(
-        title: 'Chat App',
-        // navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
+        title: 'ChitChat',
         theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
         home: SplashScreen(),
       ),

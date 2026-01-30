@@ -28,8 +28,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SessionController.name = FirebaseAuth.instance.currentUser!.displayName
-        .toString();
     return Consumer<DashboardProvider>(
       builder: (context, provider, child) {
         return Scaffold(

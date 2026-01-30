@@ -152,7 +152,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               value: "Username",
                               icon: const Icon(Icons.person),
                               onChanged: (newValue) async {
-                                SessionController.name=profiledata['username'];
                                 await FirebaseDatabaseService.updateUserField(
                                   context,
                                   'username',
